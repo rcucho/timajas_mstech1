@@ -24,7 +24,7 @@
                     <field name="eqip_product" attrs="{'invisible':[('id','=', False)]}"/>
                     <!--<field name="stock_eq_cont" attrs="{'invisible':[('id','=', False)]}"/>-->
                 </xpath>
-                <xpath expr="//button[@name='541']" position="after">
+                <xpath expr="//button[@name='150']" position="after">
                     <button type="object" name="action_view_task3" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('task_count', '=', 0)]}">
                         <field name="task_count" widget="statinfo" string="Tareas"/>
                     </button>
