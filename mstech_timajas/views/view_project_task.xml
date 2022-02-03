@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+	<record id="view_project_task_technical" model="ir.ui.view">
+		<field name="name">project.task.technical</field>
+		<field name="model">project.task</field>
+		<field name="inherit_id" ref="project.view_task_form2"/>
+        	<field name="priority" eval="40"/>
+		<field name="arch" type="xml">
+			<data>
+				<xpath expr="//page[@name='description_page']" position="attributes">
+    					<attribute name="string">Desarrollo</attribute>
+				</xpath>
+				<xpath expr="//field[@name='sale_line_id']" position="after">
+					<field name='state_payment_invoice' widget="badge" decoration-success="state_payment_invoice == 'paid'" decoration-info="state_payment_invoice == 'partial' or state_payment_invoice == 'in_payment'"/>
+				</xpath>
+				<xpath expr="//button[@name='action_fsm_view_material']" position="attributes">
+				    <attribute name="attrs">{'invisible': ['|', ('is_fsm','=',False), '|', ('partner_id', '=', False), ('allow_material', '=', False)]}</attribute>
+				</xpath>
+				<xpath expr="//button[@name='action_view_invoices']" position="attributes">
+				    <attribute name="attrs">{'invisible': ['|', ('is_fsm','=',False), '|', ('allow_billable', '=', False), ('invoice_count', '=', 0)]}</attribute>
+				</xpath>
+				<xpath expr="//notebook" position="inside">
+					<page name="herramientas_transfe" string="Peticiones de Almacén">
+						<div class="text-center">
+							<div class="col h5">
+								<!--<label for='task_picking' string="Peticiones de Almacén" style="font-weight:bold;"/>-->
+								<field name="task_picking"/>
+							</div>
+						</div>
+					</page>
+					<page name="create_orden_manu" string="Orden de Manufactura" attrs="{'invisible': [('is_fsm','=',False)]}" >
+						<field name="om_mrp" attrs="{'invisible': [('is_fsm','=',False)]}" />
+					</page>
+				</xpath>
+			</data>
+		</field>
+        </record>
+    </data>
+</odoo>
